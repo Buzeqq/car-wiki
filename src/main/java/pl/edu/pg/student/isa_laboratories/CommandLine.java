@@ -24,7 +24,7 @@ public class CommandLine implements CommandLineRunner {
 
     private void printAvailableCommands() {
         System.out.println("Available commands:");
-        System.out.println("\tList vendors");
+        System.out.println("\tList producers");
         System.out.println("\tList cars");
         System.out.println("\tCreate car");
         System.out.println("\tDelete car");
@@ -41,14 +41,14 @@ public class CommandLine implements CommandLineRunner {
         System.out.println("HP: ");
         int horsePower = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Available vendors:");
-        printAllVendors();
+        System.out.println("Available producers:");
+        printAllProducers();
         System.out.println("Choose from existing or create new one");
-        System.out.print("Vendor: ");
-        String vendorName = scanner.nextLine();
+        System.out.print("Producer: ");
+        String producerName = scanner.nextLine();
 
-        Producer producer = producerService.find(vendorName)
-                .orElseGet(() -> createVendor(vendorName));
+        Producer producer = producerService.find(producerName)
+                .orElseGet(() -> createProducer(producerName));
 
         Car newCar = Car.builder()
                 .name(name)
@@ -77,16 +77,16 @@ public class CommandLine implements CommandLineRunner {
         );
     }
 
-    private Producer createVendor(String vendorName) {
+    private Producer createProducer(String producerName) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Adding new vendor");
-        System.out.printf("Name: %s\n", vendorName);
+        System.out.println("Adding new producer");
+        System.out.printf("Name: %s\n", producerName);
         System.out.print("Foundation year: ");
         int foundationYear = Integer.parseInt(scanner.nextLine());
 
         Producer newProducer = Producer.builder()
-                .name(vendorName)
+                .name(producerName)
                 .foundationYear(foundationYear)
                 .build();
 
@@ -95,7 +95,7 @@ public class CommandLine implements CommandLineRunner {
         return newProducer;
     }
 
-    private void printAllVendors() {
+    private void printAllProducers() {
         producerService.findAll().forEach(System.out::println);
     }
 
@@ -120,8 +120,8 @@ public class CommandLine implements CommandLineRunner {
 
             if (command.equalsIgnoreCase("Stop")) {
                 break;
-            } else if (command.equalsIgnoreCase("List vendors")) {
-                printAllVendors();
+            } else if (command.equalsIgnoreCase("List producers")) {
+                printAllProducers();
             } else if (command.equalsIgnoreCase("List cars")) {
                 printAllCars();
             } else if (command.equalsIgnoreCase("Create car")) {

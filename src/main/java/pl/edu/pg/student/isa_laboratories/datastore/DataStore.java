@@ -22,7 +22,7 @@ public class DataStore {
 
     public synchronized Optional<Producer> findProducer(String name) {
         return producers.stream()
-                .filter(vendor -> vendor.getName().equals(name))
+                .filter(producer -> producer.getName().equals(name))
                 .findFirst()
                 .map(CloningUtility::clone);
     }
@@ -31,7 +31,7 @@ public class DataStore {
         findProducer(producer.getName()).ifPresentOrElse(
                 original -> {
                     throw new IllegalArgumentException(
-                            String.format("The vendor name \"%s\" is not unique", producer.getName()));
+                            String.format("The producer name \"%s\" is not unique", producer.getName()));
                 },
                 () -> producers.add(CloningUtility.clone(producer)));
     }
