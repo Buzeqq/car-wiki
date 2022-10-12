@@ -2,6 +2,7 @@ package pl.edu.pg.student.isa_laboratories.car.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pg.student.isa_laboratories.car.entity.Producer;
 import pl.edu.pg.student.isa_laboratories.car.repository.ProducerRepository;
 
@@ -20,19 +21,26 @@ public class ProducerService {
 
 
     public Optional<Producer> find(String name) {
-        return repository.find(name);
+        return repository.findById(name);
     }
 
     public List<Producer> findAll() {
         return repository.findAll();
     }
 
-    public void create(Producer producer) {
-        repository.create(producer);
+    @Transactional
+    public Producer create(Producer producer) {
+        return repository.save(producer);
     }
 
+    @Transactional
     public void delete(String name) {
-        repository.delete(repository.find(name).orElseThrow());
+        repository.deleteById(name);
+    }
+
+    @Transactional
+    public void update(Producer producer) {
+        repository.save(producer);
     }
 
 }

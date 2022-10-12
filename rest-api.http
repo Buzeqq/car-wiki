@@ -1,0 +1,89 @@
+GET http://localhost:8080/api/cars
+Accept: application/json
+
+<> 2022-10-12T164838.200.json
+<> 2022-10-12T154928.200.json
+<> 2022-10-12T154049.200.json
+<> 2022-10-12T153842.200.json
+
+###
+
+GET http://localhost:8080/api/cars/1
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/cars/5
+Accept: application/json
+
+<> 2022-10-12T154054.200.json
+
+###
+
+POST http://localhost:8080/api/cars
+Content-Type: application/json
+
+{
+  "name": "Hilux",
+  "horsePower": 150,
+  "producer": "Mazda"
+}
+
+###
+
+PUT http://localhost:8080/api/cars/5
+Content-Type: application/json
+
+{
+  "name": "Lancer Evolution",
+  "horsePower": 260
+}
+
+###
+
+GET http://localhost:8080/api/producers
+
+<> 2022-10-12T173013.200.json
+<> 2022-10-12T165002.200.json
+
+###
+
+GET http://localhost:8080/api/producers/Mitsubishi
+
+<> 2022-10-12T173040.200.json
+<> 2022-10-12T173038.200.json
+<> 2022-10-12T173027.200.json
+<> 2022-10-12T165338.200.json
+<> 2022-10-12T165306.200.json
+<> 2022-10-12T165221.200.json
+<> 2022-10-12T165217.200.json
+<> 2022-10-12T165046.200.json
+<> 2022-10-12T154308.200.json
+
+###
+
+DELETE http://localhost:8080/api/cars/5
+
+###
+
+DELETE http://localhost:8080/api/producers/Mazda
+
+<> 2022-10-12T155017.500.json
+
+###
+
+GET http://localhost:8080/api/producers/Mazda/cars
+
+<> 2022-10-12T172808.200.json
+
+###
+
+PUT http://localhost:8080/api/producers/Mitsubishi
+Content-Type: application/json
+
+{
+  "name": "Mitsubishi",
+  "foundationYear": 2022
+}
+
+<> 2022-10-12T172943.500.json
