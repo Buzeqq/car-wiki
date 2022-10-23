@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.student.isa_laboratories.car.entity.Car;
-import pl.edu.pg.student.isa_laboratories.car.entity.Producer;
+import pl.edu.pg.student.isa_laboratories.producer.entity.Producer;
 import pl.edu.pg.student.isa_laboratories.car.service.CarService;
-import pl.edu.pg.student.isa_laboratories.car.service.ProducerService;
+import pl.edu.pg.student.isa_laboratories.producer.service.ProducerService;
 
 import java.util.List;
 import java.util.Scanner;

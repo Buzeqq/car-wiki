@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.edu.pg.student.isa_laboratories.car.dto.CreateCarRequest;
-import pl.edu.pg.student.isa_laboratories.car.dto.GetCarResponse;
-import pl.edu.pg.student.isa_laboratories.car.dto.GetCarsResponse;
-import pl.edu.pg.student.isa_laboratories.car.dto.UpdateCarRequest;
+import pl.edu.pg.student.isa_laboratories.car.dto.*;
 import pl.edu.pg.student.isa_laboratories.car.entity.Car;
 import pl.edu.pg.student.isa_laboratories.car.service.CarService;
-import pl.edu.pg.student.isa_laboratories.car.service.ProducerService;
+import pl.edu.pg.student.isa_laboratories.producer.service.ProducerService;
 
 import java.util.Collection;
 import java.util.List;

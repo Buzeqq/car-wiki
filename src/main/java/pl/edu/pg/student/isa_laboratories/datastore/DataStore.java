@@ -4,7 +4,7 @@ import lombok.extern.java.Log;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.student.isa_laboratories.serialization.CloningUtility;
 import pl.edu.pg.student.isa_laboratories.car.entity.Car;
-import pl.edu.pg.student.isa_laboratories.car.entity.Producer;
+import pl.edu.pg.student.isa_laboratories.producer.entity.Producer;
 
 import java.util.*;
 import java.util.stream.Collectors;

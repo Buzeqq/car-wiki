@@ -1,4 +1,4 @@
-package pl.edu.pg.student.isa_laboratories.car.dto;
+package pl.edu.pg.student.isa_laboratories.producer.dto;
 
 import lombok.*;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Function;
 
 /**
- * A DTO for the {@link pl.edu.pg.student.isa_laboratories.car.entity.Producer} entity
+ * A DTO for the {@link pl.edu.pg.student.isa_laboratories.producer.entity.Producer} entity
  */
 @Getter
 @Setter
@@ -32,7 +32,7 @@ public class GetProducersResponse {
     @Singular
     private List<Producer> producers;
 
-    public static Function<Collection<pl.edu.pg.student.isa_laboratories.car.entity.Producer>, GetProducersResponse> entityToDtoMapper() {
+    public static Function<Collection<pl.edu.pg.student.isa_laboratories.producer.entity.Producer>, GetProducersResponse> entityToDtoMapper() {
         return producers -> {
             GetProducersResponseBuilder response = GetProducersResponse.builder();
             producers.stream()

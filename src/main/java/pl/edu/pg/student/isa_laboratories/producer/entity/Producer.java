@@ -1,8 +1,9 @@
-package pl.edu.pg.student.isa_laboratories.car.entity;
+package pl.edu.pg.student.isa_laboratories.producer.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
+import pl.edu.pg.student.isa_laboratories.car.entity.Car;
 
 import javax.persistence.*;
 import java.io.Serializable;
