@@ -1,13 +1,13 @@
-package pl.edu.pg.student.isa_laboratories.car.dto;
+package pl.edu.pg.student.isa_laboratories.producer.dto;
 
 import lombok.*;
-import pl.edu.pg.student.isa_laboratories.car.entity.Producer;
+import pl.edu.pg.student.isa_laboratories.producer.entity.Producer;
 
 import java.util.List;
 import java.util.function.Function;
 
 /**
- * A DTO for the {@link pl.edu.pg.student.isa_laboratories.car.entity.Producer} entity
+ * A DTO for the {@link Producer} entity
  */
 @Getter
 @Setter

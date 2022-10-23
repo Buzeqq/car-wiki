@@ -1,7 +1,7 @@
 package pl.edu.pg.student.isa_laboratories.car.dto;
 
 import lombok.*;
-import pl.edu.pg.student.isa_laboratories.car.entity.Producer;
+import pl.edu.pg.student.isa_laboratories.producer.entity.Producer;
 
 import java.util.List;
 import java.util.function.Function;

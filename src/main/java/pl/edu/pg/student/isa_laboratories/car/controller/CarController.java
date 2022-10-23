@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.edu.pg.student.isa_laboratories.car.dto.CreateCarRequest;
-import pl.edu.pg.student.isa_laboratories.car.dto.GetCarResponse;
-import pl.edu.pg.student.isa_laboratories.car.dto.GetCarsResponse;
-import pl.edu.pg.student.isa_laboratories.car.dto.UpdateCarRequest;
+import pl.edu.pg.student.isa_laboratories.car.dto.*;
 import pl.edu.pg.student.isa_laboratories.car.entity.Car;
 import pl.edu.pg.student.isa_laboratories.car.service.CarService;
-import pl.edu.pg.student.isa_laboratories.car.service.ProducerService;
+import pl.edu.pg.student.isa_laboratories.producer.service.ProducerService;
 
 import java.util.Collection;
 import java.util.List;
@@ -42,6 +39,13 @@ public class CarController {
     public ResponseEntity<GetCarResponse> getCar(@PathVariable("id") long id) {
         return  carService.find(id)
                 .map(value -> ResponseEntity.ok(GetCarResponse.entityToDtoMapper().apply(value)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("{name}/cars")
+    public ResponseEntity<GetCarsByProducerResponse> getCarsByProducer(@PathVariable("name") String name) {
+        return  producerService.find(name)
+                .map(value -> ResponseEntity.ok(GetCarsByProducerResponse.entityToDtoMapper().apply(value)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 

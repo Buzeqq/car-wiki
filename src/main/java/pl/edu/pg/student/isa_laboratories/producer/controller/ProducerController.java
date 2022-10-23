@@ -1,12 +1,15 @@
-package pl.edu.pg.student.isa_laboratories.car.controller;
+package pl.edu.pg.student.isa_laboratories.producer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.edu.pg.student.isa_laboratories.car.dto.*;
-import pl.edu.pg.student.isa_laboratories.car.entity.Producer;
-import pl.edu.pg.student.isa_laboratories.car.service.ProducerService;
+import pl.edu.pg.student.isa_laboratories.producer.entity.Producer;
+import pl.edu.pg.student.isa_laboratories.producer.service.ProducerService;
+import pl.edu.pg.student.isa_laboratories.producer.dto.CreateProducerRequest;
+import pl.edu.pg.student.isa_laboratories.producer.dto.GetProducerResponse;
+import pl.edu.pg.student.isa_laboratories.producer.dto.GetProducersResponse;
+import pl.edu.pg.student.isa_laboratories.producer.dto.UpdateProducerRequest;
 
 import java.util.Collection;
 import java.util.List;
@@ -37,14 +40,6 @@ public class ProducerController {
                 .map(value -> ResponseEntity.ok(GetProducerResponse.entityToDtoMapper().apply(value)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
-    @GetMapping("{name}/cars")
-    public ResponseEntity<GetCarsByProducerResponse> getCarsByProducer(@PathVariable("name") String name) {
-        return  producerService.find(name)
-                .map(value -> ResponseEntity.ok(GetCarsByProducerResponse.entityToDtoMapper().apply(value)))
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
 
     @PostMapping
     public ResponseEntity<Void> createProducer(@RequestBody CreateProducerRequest request, UriComponentsBuilder builder) {
