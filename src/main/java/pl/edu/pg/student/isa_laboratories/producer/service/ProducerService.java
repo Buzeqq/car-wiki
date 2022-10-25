@@ -1,9 +1,9 @@
-package pl.edu.pg.student.isa_laboratories.car.service;
+package pl.edu.pg.student.isa_laboratories.producer.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.edu.pg.student.isa_laboratories.car.entity.Producer;
-import pl.edu.pg.student.isa_laboratories.car.repository.ProducerRepository;
+import pl.edu.pg.student.isa_laboratories.producer.entity.Producer;
+import pl.edu.pg.student.isa_laboratories.producer.repository.ProducerRepository;
 
 import java.util.List;
 import java.util.Optional;

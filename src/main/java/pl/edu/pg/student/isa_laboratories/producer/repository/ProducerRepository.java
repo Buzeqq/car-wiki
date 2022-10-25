@@ -1,7 +1,7 @@
-package pl.edu.pg.student.isa_laboratories.car.repository;
+package pl.edu.pg.student.isa_laboratories.producer.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.edu.pg.student.isa_laboratories.car.entity.Producer;
+import pl.edu.pg.student.isa_laboratories.producer.entity.Producer;
 import pl.edu.pg.student.isa_laboratories.datastore.DataStore;
 import pl.edu.pg.student.isa_laboratories.repository.Repository;
 
