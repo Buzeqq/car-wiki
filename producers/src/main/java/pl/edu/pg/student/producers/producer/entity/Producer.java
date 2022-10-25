@@ -1,12 +1,12 @@
-package pl.edu.pg.student.gateway.car.entity;
+package pl.edu.pg.student.producers.producer.entity;
 
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
-import pl.edu.pg.student.gateway.producer.entity.Producer;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Getter
@@ -16,27 +16,19 @@ import java.util.Objects;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString()
 @Entity
-@Table(name = "cars")
-public class Car implements Serializable {
-
+@Table(name = "producers")
+public class Producer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private String name;
 
-    @ManyToOne()
-    @JoinColumn(name = "producers")
-    private Producer producer;
-
-    private int horsePower;
+    private int foundationYear;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Car car = (Car) o;
-        return id != null && Objects.equals(id, car.id);
+        Producer producer = (Producer) o;
+        return name != null && Objects.equals(name, producer.name);
     }
 
     @Override
