@@ -75,10 +75,29 @@ public class ProducerCarController {
 
         if (car.isPresent()) {
             UpdateCarRequest.dtoToEntityUpdater().apply(car.get(), request);
-            carService.update(car.get());
+            carService.delete(car.get().getId());
             return ResponseEntity.accepted().build();
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Void> updateCar(@PathVariable("name") String name,
+                                          @RequestBody UpdateCarRequest request,
+                                          @PathVariable("id") long id) {
+        Optional<Car> car = carService.find(name, id);
+
+        if (car.isPresent()) {
+            UpdateCarRequest.dtoToEntityUpdater().apply(car.get(), request);
+            carService.update(car.get());
+            return ResponseEntity
+                    .accepted()
+                    .build();
+        } else {
+            return ResponseEntity
+                    .notFound()
+                    .build();
         }
     }
 }

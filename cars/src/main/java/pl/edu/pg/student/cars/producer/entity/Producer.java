@@ -3,9 +3,11 @@ package pl.edu.pg.student.cars.producer.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
+import pl.edu.pg.student.cars.car.entity.Car;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -19,6 +21,10 @@ import java.util.Objects;
 public class Producer implements Serializable {
     @Id
     private String name;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "producer")
+    @ToString.Exclude
+    private List<Car> producedCars;
 
     @Override
     public boolean equals(Object o) {

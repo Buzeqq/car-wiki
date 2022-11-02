@@ -45,7 +45,7 @@ public class ProducerService {
 
     @Transactional
     public void update(Producer producer) {
-        eventRepository.update(producer);
+        // eventRepository.update(producer);
         repository.save(producer);
     }
 }

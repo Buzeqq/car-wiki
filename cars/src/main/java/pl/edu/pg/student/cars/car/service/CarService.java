@@ -27,8 +27,8 @@ public class CarService {
         return carRepository.findById(id);
     }
 
-    public Optional<Car> find(String name, Long id) {
-        Optional<Producer> producer = producerRepository.findById(name);
+    public Optional<Car> find(String producerName, Long id) {
+        Optional<Producer> producer = producerRepository.findById(producerName);
         if (producer.isPresent()) {
             return carRepository.findByProducerAndId(producer.get(), id);
         } else {

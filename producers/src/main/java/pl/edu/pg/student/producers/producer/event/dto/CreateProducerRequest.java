@@ -16,8 +16,8 @@ public class CreateProducerRequest {
     private String name;
 
     public static Function<Producer, CreateProducerRequest> entityToDtoMapper() {
-        return user -> CreateProducerRequest.builder()
-                .name(user.getName())
+        return entity -> CreateProducerRequest.builder()
+                .name(entity.getName())
                 .build();
     }
 }

@@ -25,8 +25,4 @@ public class ProducerEventRepository {
     public void create(Producer producer) {
         restTemplate.postForLocation("/producers", CreateProducerRequest.entityToDtoMapper().apply(producer));
     }
-
-    public void update(Producer producer) {
-        restTemplate.put("/producers", producer);
-    }
 }
