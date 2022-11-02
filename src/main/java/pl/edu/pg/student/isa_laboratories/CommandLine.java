@@ -1,5 +1,6 @@
 package pl.edu.pg.student.isa_laboratories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.edu.pg.student.isa_laboratories.car.entity.Car;
@@ -17,6 +18,7 @@ public class CommandLine implements CommandLineRunner {
     private final CarService carService;
     private final ProducerService producerService;
 
+    @Autowired
     public CommandLine(CarService carService, ProducerService producerService) {
         this.carService = carService;
         this.producerService = producerService;
@@ -114,7 +116,7 @@ public class CommandLine implements CommandLineRunner {
         Scanner scanner = new Scanner(System.in);
 
         printAvailableCommands();
-
+        //carService.update();
         while(true) {
             String command = scanner.nextLine();
 
