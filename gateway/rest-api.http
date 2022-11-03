@@ -13,13 +13,12 @@ Accept: application/json
 
 ###
 
-POST http://localhost:8080/api/cars
+POST http://localhost:8080/api/producers/Toyota/cars
 Content-Type: application/json
 
 {
   "name": "Hilux",
-  "horsePower": 150,
-  "producer": "Toyota"
+  "horsePower": 150
 }
 
 ###
@@ -65,3 +64,16 @@ Content-Type: application/json
   "name": "Mitsubishi",
   "foundationYear": 2022
 }
+###
+
+POST http://localhost:8080/api/producers
+Content-Type: application/json
+
+{
+  "name": "New Producer",
+  "foundationYear": 4200
+}
+
+###
+
+GET http://172.20.10.9:8081/actuator/health
