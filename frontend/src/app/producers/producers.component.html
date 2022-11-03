@@ -1,0 +1,12 @@
+<h2>Producers</h2>
+<mat-selection-list #producersList [multiple]="false">
+  <mat-list-option *ngFor="let producer of producers" [value]="producer">
+    {{producer.name}}
+  </mat-list-option>
+</mat-selection-list>
+
+<mat-card *ngIf="producersList.selectedOptions.selected[0]">
+  <mat-card-title>Producer details</mat-card-title>
+  <mat-card-subtitle>Producer name: {{producersList.selectedOptions.selected[0]?.value.name}}</mat-card-subtitle>
+  <mat-card-content>Producer foundation year: {{producersList.selectedOptions.selected[0]?.value.foundationYear}}</mat-card-content>
+</mat-card>
