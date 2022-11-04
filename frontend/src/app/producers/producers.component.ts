@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Producer} from "../producer";
+import { Component } from '@angular/core';
 import {ProducerService} from "../producer.service";
 
 @Component({
@@ -7,18 +6,7 @@ import {ProducerService} from "../producer.service";
   templateUrl: './producers.component.html',
   styleUrls: ['./producers.component.css']
 })
-export class ProducersComponent implements OnInit {
-
-  producers: Producer[] = [];
-
-  constructor(private producerService: ProducerService) { }
-
-  ngOnInit(): void {
-    this.getProducers();
-  }
-
-  getProducers(): void {
-    this.producerService.getProducers()
-      .subscribe(producers => this.producers = producers);
-  }
+export class ProducersComponent {
+  public readonly producers$ = this.producerService.getProducers();
+  constructor(private readonly producerService: ProducerService) { }
 }

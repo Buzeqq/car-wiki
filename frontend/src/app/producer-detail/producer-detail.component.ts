@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Producer, ProducerDetail} from "../producer";
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {ProducerCreatorDialog} from "../producer-creator/producer-creator.component";
+import {ProducerDetail} from "../producer";
+import {MatDialogRef} from "@angular/material/dialog";
 import {ActivatedRoute} from "@angular/router";
 import {ProducerService} from "../producer.service";
 import {Location} from "@angular/common";
@@ -31,6 +30,7 @@ export class ProducerDetailComponent implements OnInit {
     this.producerService.getProducer(name).subscribe(
       producer => this.producer = producer
     );
+    console.log(this.producer);
   }
 
   goBack(): void {

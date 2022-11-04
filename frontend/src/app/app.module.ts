@@ -16,6 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -27,19 +28,20 @@ import {HttpClientModule} from "@angular/common/http";
     ProducerCreatorDialog,
     DashboardComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatListModule,
-    MatCardModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatListModule,
+        MatCardModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatProgressSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

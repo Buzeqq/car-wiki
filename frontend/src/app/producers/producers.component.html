@@ -1,9 +1,12 @@
-<h2>Producers</h2>
-<mat-selection-list #producersList [multiple]="false">
-  <mat-list-option *ngFor="let producer of producers" [value]="producer" routerLink="/detail/{{producer.name}}">
-    {{producer.name}}
-  </mat-list-option>
-</mat-selection-list>
+<ng-container *ngIf="producers$ | async as producers; else loading">
+  <h2>Producers</h2>
+  <mat-selection-list #producersList [multiple]="false">
+    <mat-list-option *ngFor="let producer of producers" [value]="producer" routerLink="/detail/{{producer}}">
+      {{producer}}
+    </mat-list-option>
+  </mat-selection-list>
+</ng-container>
 
-<!--<app-producer-detail [producer]="producersList.selectedOptions.selected[0]?.value"></app-producer-detail>-->
-<!--<app-producer-creator></app-producer-creator>-->
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

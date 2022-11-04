@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Producer, ProducerDetail} from "./producer";
-import {Observable, of} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {PRODUCERS} from "./mock-producers";
+import {map, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +10,17 @@ export class ProducerService {
 
   constructor(private http: HttpClient) { }
 
-  private producerUrl = 'api/producers';
+  private producerUrl = '//localhost:8080/api/producers';
 
   getProducers(): Observable<Producer[]> {
-    // return this.http.get<Producer[]>(this.producerUrl);
-    return of(PRODUCERS.map<Producer>(producerDetail => ({name: producerDetail.name})));
+    return this.http.get<{
+      producers: Producer[]
+    }>(this.producerUrl).pipe(
+      map(resp => resp.producers)
+    );
   }
 
   getProducer(name: string): Observable<ProducerDetail> {
-    // return this.http.get<ProducerDetail>(this.producerUrl + '/' + name);
-    return of(PRODUCERS.find(producer => producer.name === name)!);
+    return this.http.get<ProducerDetail>(this.producerUrl + '/' + name);
   }
 }

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Producer} from "../producer";
+import {Component} from '@angular/core';
 import {ProducerService} from "../producer.service";
 
 @Component({
@@ -7,18 +6,7 @@ import {ProducerService} from "../producer.service";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-  producers: Producer[] = [];
-
-  constructor(public producerService: ProducerService) { }
-
-  ngOnInit(): void {
-    this.getTop3Producers();
-  }
-
-  getTop3Producers(): void {
-    this.producerService.getProducers().subscribe(
-      producers => this.producers = producers.slice(1, 4)
-    );
-  }
+export class DashboardComponent {
+  public readonly producers$ = this.producerService.getProducers();
+  constructor(private readonly producerService: ProducerService) { }
 }

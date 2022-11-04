@@ -1,2 +1,10 @@
-<h2>Top producers</h2>
-<a mat-button *ngFor="let producer of producers" routerLink="/detail/{{producer.name}}" style="margin-right: 20px">{{producer.name}}</a>
+<ng-container *ngIf="producers$ | async as producers; else loading">
+  <h2>Top producers</h2>
+  <a mat-button *ngFor="let producer of producers" routerLink="/detail/{{producer}}">
+    {{producer}}
+  </a>
+</ng-container>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
