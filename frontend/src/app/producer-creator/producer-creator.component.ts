@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {NgForm} from "@angular/forms";
+import {Producer, ProducerDetail} from "../producer";
+import {ProducerDetailComponent} from "../producer-detail/producer-detail.component";
 
 @Component({
   selector: 'app-producer-creator',
@@ -40,6 +42,7 @@ export class ProducerCreatorComponent implements OnInit {
   templateUrl: 'producer-creator-dialog.html',
 })
 export class ProducerCreatorDialog {
+  producer?: ProducerDetail;
   constructor(public dialogRef: MatDialogRef<ProducerCreatorDialog>) {}
 
   onSend(form: NgForm) {

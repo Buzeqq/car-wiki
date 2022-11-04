@@ -1,12 +1,12 @@
 <form #userForm="ngForm" class="producer-creator-form" (ngSubmit)="onSend(userForm)">
   <mat-form-field class="form-full-width" appearance="fill">
     <mat-label>Producer name</mat-label>
-    <input matInput name="producerName" ngModel required>
+    <input matInput name="producerName" ngModel required value="{{producer?.name}}">
   </mat-form-field>
 
   <mat-form-field class="form-full-width" appearance="fill">
     <mat-label>Foundation year</mat-label>
-    <input matInput type="number" name="foundationYear" ngModel required>
+    <input matInput type="number" name="foundationYear" ngModel required value="{{producer?.foundationYear}}">
   </mat-form-field>
 
   <mat-dialog-actions align="end">

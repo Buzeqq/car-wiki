@@ -1,9 +1,9 @@
 <h2>Producers</h2>
 <mat-selection-list #producersList [multiple]="false">
-  <mat-list-option *ngFor="let producer of producers" [value]="producer">
+  <mat-list-option *ngFor="let producer of producers" [value]="producer" routerLink="/detail/{{producer.name}}">
     {{producer.name}}
   </mat-list-option>
 </mat-selection-list>
 
-<app-producer-detail [producer]="producersList.selectedOptions.selected[0]?.value"></app-producer-detail>
-<app-producer-creator></app-producer-creator>
+<!--<app-producer-detail [producer]="producersList.selectedOptions.selected[0]?.value"></app-producer-detail>-->
+<!--<app-producer-creator></app-producer-creator>-->

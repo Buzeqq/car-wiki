@@ -1,6 +1,6 @@
-import {Producer} from "./producer";
+import {Producer, ProducerDetail} from "./producer";
 
-export const PRODUCERS: Producer[] = [
+export const PRODUCERS: ProducerDetail[] = [
   { name: "Mazda", foundationYear: 1999 },
   { name: "Honda", foundationYear: 1998 },
   { name: "Mitsubishi", foundationYear: 1997 },

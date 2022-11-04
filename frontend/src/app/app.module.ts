@@ -13,6 +13,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {ProducerCreatorComponent, ProducerCreatorDialog} from './producer-creator/producer-creator.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import {MatInputModule} from "@angular/material/input";
     ProducerDetailComponent,
     ProducerDetailDialog,
     ProducerCreatorComponent,
-    ProducerCreatorDialog
+    ProducerCreatorDialog,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import {MatInputModule} from "@angular/material/input";
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

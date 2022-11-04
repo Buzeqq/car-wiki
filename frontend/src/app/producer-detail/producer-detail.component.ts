@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Producer} from "../producer";
+import {Producer, ProducerDetail} from "../producer";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {ProducerCreatorDialog} from "../producer-creator/producer-creator.component";
+import {ActivatedRoute} from "@angular/router";
+import {ProducerService} from "../producer.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-producer-detail',
@@ -10,21 +14,27 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 export class ProducerDetailComponent implements OnInit {
 
-  @Input() producer?: Producer;
+  @Input() producer?: ProducerDetail;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    private route: ActivatedRoute,
+    private producerService: ProducerService,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
+    this.getProducer();
   }
 
-  deleteProducer(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    const dialogRef = this.dialog.open(ProducerDetailDialog, {
-      width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
-    let producerName = dialogRef.componentInstance;
-    producerName.producerName = this.producer!.name;
+  getProducer(): void {
+    const name = this.route.snapshot.paramMap.get('name')!;
+    this.producerService.getProducer(name).subscribe(
+      producer => this.producer = producer
+    );
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
 
@@ -34,5 +44,5 @@ export class ProducerDetailComponent implements OnInit {
 })
 export class ProducerDetailDialog {
   constructor(public dialogRef: MatDialogRef<ProducerDetailDialog>) {}
-  producerName?: string;
+  producer?: ProducerDetail;
 }
