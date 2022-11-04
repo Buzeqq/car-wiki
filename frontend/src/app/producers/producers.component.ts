@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PRODUCERS } from "../mock-producers";
 import {Producer} from "../producer";
+import {ProducerService} from "../producer.service";
 
 @Component({
   selector: 'app-producers',
@@ -9,15 +9,16 @@ import {Producer} from "../producer";
 })
 export class ProducersComponent implements OnInit {
 
-  producers: Producer[] = PRODUCERS;
+  producers: Producer[] = [];
 
-  constructor() { }
+  constructor(private producerService: ProducerService) { }
 
   ngOnInit(): void {
+    this.getProducers();
   }
 
-  selectedProducer?: Producer;
-  onSelect(producer: Producer) {
-    this.selectedProducer = producer;
+  getProducers(): void {
+    this.producerService.getProducers()
+      .subscribe(producers => this.producers = producers);
   }
 }

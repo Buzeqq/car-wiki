@@ -1,0 +1,7 @@
+<mat-card *ngIf="producer">
+  <mat-card-title>{{producer.name}}</mat-card-title>
+  <mat-card-content>Producer foundation year: {{producer.foundationYear}}</mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="deleteProducer('0ms', '0ms')" color="primary">Delete</button>
+  </mat-card-actions>
+</mat-card>

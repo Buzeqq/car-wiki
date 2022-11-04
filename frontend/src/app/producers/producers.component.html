@@ -5,8 +5,5 @@
   </mat-list-option>
 </mat-selection-list>
 
-<mat-card *ngIf="producersList.selectedOptions.selected[0]">
-  <mat-card-title>Producer details</mat-card-title>
-  <mat-card-subtitle>Producer name: {{producersList.selectedOptions.selected[0]?.value.name}}</mat-card-subtitle>
-  <mat-card-content>Producer foundation year: {{producersList.selectedOptions.selected[0]?.value.foundationYear}}</mat-card-content>
-</mat-card>
+<app-producer-detail [producer]="producersList.selectedOptions.selected[0]?.value"></app-producer-detail>
+<app-producer-creator></app-producer-creator>
