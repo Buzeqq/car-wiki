@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {ProducerService} from "../producer.service";
+import { Component } from '@angular/core';
+import { ProducerService } from "../producer.service";
 
 @Component({
   selector: 'app-dashboard',

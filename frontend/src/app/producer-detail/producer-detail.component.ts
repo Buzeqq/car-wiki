@@ -1,9 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ProducerDetail} from "../producer";
-import {MatDialogRef} from "@angular/material/dialog";
-import {ActivatedRoute} from "@angular/router";
-import {ProducerService} from "../producer.service";
-import {Location} from "@angular/common";
+import { Component, Input, OnInit } from '@angular/core';
+import { ProducerDetail } from "../producer";
+import { ActivatedRoute } from "@angular/router";
+import { ProducerService } from "../producer.service";
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-producer-detail',
@@ -36,13 +35,4 @@ export class ProducerDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-}
-
-@Component({
-  selector: 'producer-detail-dialog',
-  templateUrl: 'producer-detail-dialog.html',
-})
-export class ProducerDetailDialog {
-  constructor(public dialogRef: MatDialogRef<ProducerDetailDialog>) {}
-  producer?: ProducerDetail;
 }
