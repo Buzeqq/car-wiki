@@ -1,10 +1,12 @@
-<ng-container *ngIf="producers$ | async as producers; else loading">
+<ng-container *ngIf="producerService.producers$ | async as producers; else loading">
   <h2>Producers</h2>
-  <mat-selection-list #producersList [multiple]="false">
+  <mat-selection-list [multiple]="false">
     <mat-list-option *ngFor="let producer of producers" [value]="producer" routerLink="/detail/{{producer}}">
       {{producer}}
     </mat-list-option>
   </mat-selection-list>
+
+  <button mat-raised-button color="primary" (click)="createProducer()">Create new producer</button>
 </ng-container>
 
 <ng-template #loading>

@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Create producer</h1>
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput required formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Foundation year</mat-label>
+    <input matInput type="number" required formControlName="foundationYear">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="abort()">Abort</button>
+  <button mat-raised-button cdkFocusInitial color="primary" type="submit" (click)="create()">Create</button>
+</mat-dialog-actions>

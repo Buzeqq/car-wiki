@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ProducersComponent } from './producers/producers.component';
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from "@angular/material/list";
 import { MatCardModule } from "@angular/material/card";
@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from "@angular/common/http";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-dialog/producer-detail-delete-dialog.component';
+import { ProducerCreateFormDialogComponent } from './producer-create-form-dialog/producer-create-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-di
     ProducersComponent,
     ProducerDetailComponent,
     ProducerDetailDeleteDialogComponent,
+    ProducerCreateFormDialogComponent,
   ],
     imports: [
         BrowserModule,
@@ -36,7 +38,8 @@ import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-di
         MatInputModule,
         AppRoutingModule,
         HttpClientModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
