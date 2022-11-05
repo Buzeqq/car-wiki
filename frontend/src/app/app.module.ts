@@ -13,7 +13,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-dialog/producer-detail-delete-dialog.component';
@@ -23,7 +22,6 @@ import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-di
     AppComponent,
     ProducersComponent,
     ProducerDetailComponent,
-    DashboardComponent,
     ProducerDetailDeleteDialogComponent,
   ],
     imports: [

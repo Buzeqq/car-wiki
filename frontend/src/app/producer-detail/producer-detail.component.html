@@ -1,5 +1,5 @@
 <ng-container *ngIf="producerDetail$ | async as producer; else loading">
-  <mat-card style="margin-bottom: 20px">
+  <mat-card>
     <mat-card-title>{{producer.name}}</mat-card-title>
     <mat-card-content>Producer foundation year: {{producer.foundationYear}}</mat-card-content>
     <mat-card-actions>
