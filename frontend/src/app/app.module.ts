@@ -16,13 +16,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-dialog/producer-detail-delete-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProducersComponent,
     ProducerDetailComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProducerDetailDeleteDialogComponent,
   ],
     imports: [
         BrowserModule,

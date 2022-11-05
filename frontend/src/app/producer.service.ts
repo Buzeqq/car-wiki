@@ -8,9 +8,9 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ProducerService {
 
-  constructor(private http: HttpClient) { }
-
   private producerUrl = '//localhost:8080/api/producers';
+
+  constructor(private http: HttpClient) { }
 
   getProducers(): Observable<Producer[]> {
     return this.http.get<{
@@ -22,5 +22,9 @@ export class ProducerService {
 
   getProducer(name: string): Observable<ProducerDetail> {
     return this.http.get<ProducerDetail>(this.producerUrl + '/' + name);
+  }
+
+  deleteProducer(name: string): Observable<any> {
+    return this.http.delete<Producer>(this.producerUrl + '/' + name);
   }
 }
