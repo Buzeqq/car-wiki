@@ -41,18 +41,18 @@ export class ProducerDetailComponent {
   private openEditDialog(producer: ProducerDetail): void {
     const oldProducer = producer;
     const dialogRef = this.dialog.open(ProducerCreateFormDialogComponent, {
-        data: producer
-      }
-    );
-
-    dialogRef.afterClosed().subscribe(
-      confirmation => {
-        if (confirmation) {
-          this.producerService.updateProducer(oldProducer, producer).subscribe();
-          this.goBack();
+        data: {
+          producer,
+          isEdit: true
         }
       }
     );
+
+    dialogRef.afterClosed().pipe(
+      filter(Boolean),
+      tap(() => this.goBack()),
+      switchMap(newProducer => this.producerService.updateProducer(oldProducer, newProducer))
+    ).subscribe();
   }
 
   private openDeleteDialog(producer: ProducerDetail): void {

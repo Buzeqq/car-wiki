@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Create producer</h1>
+<h1 mat-dialog-title [textContent]="data?.isEdit ? 'Edit producer' : 'Create producer'"></h1>
 <mat-dialog-content [formGroup]="form">
   <mat-form-field appearance="fill">
     <mat-label>Name</mat-label>
@@ -13,6 +13,5 @@
 
 <mat-dialog-actions>
   <button mat-raised-button color="warn" (click)="abort()">Abort</button>
-  <button #createButton mat-raised-button cdkFocusInitial color="primary" type="submit" (click)="create()">Create</button>
-<!--  <button #updateButton mat-raised-button cdkFocusInitial color="primary" type="submit" (click)="create()">Update</button>-->
+  <button mat-raised-button cdkFocusInitial color="primary" type="submit" (click)="create()" [textContent]="data?.isEdit ? 'Update' : 'Create'"></button>
 </mat-dialog-actions>

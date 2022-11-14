@@ -10,14 +10,17 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class ProducerCreateFormDialogComponent implements OnInit {
   public form: FormGroup = this.fb.group({
-    name: this.producer ? this.producer.name : '',
-    foundationYear: this.producer ? this.producer.foundationYear : ''
+    name: this.data?.producer ? this.data.producer.name : '',
+    foundationYear: this.data?.producer ? this.data.producer.foundationYear : ''
   });
 
   constructor(
     private dialogRef: MatDialogRef<ProducerCreateFormDialogComponent>,
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public producer?: ProducerDetail
+    @Inject(MAT_DIALOG_DATA) public data?: {
+      isEdit: true,
+      producer: ProducerDetail
+    }
   ) { }
 
   ngOnInit() {

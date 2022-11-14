@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Producer, ProducerDetail } from "./producer";
-import { BehaviorSubject, catchError, map, Observable, of } from "rxjs";
+import {BehaviorSubject, catchError, map, Observable, of, tap} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
@@ -52,7 +52,10 @@ export class ProducerService {
       .filter(producer => oldProducer.name !== producer)
       .concat(newProducer.name));
 
+    console.log(newProducer);
+
     return this.http.put<ProducerDetail>(ProducerService.producerUrl + '/' + oldProducer.name, newProducer).pipe(
+      tap(response => console.log(response)),
       catchError(error => {
         console.log(error);
 
