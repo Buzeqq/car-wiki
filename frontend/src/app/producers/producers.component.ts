@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProducerService } from "../producer.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ProducerCreateFormDialogComponent } from "../producer-create-form-dialog/producer-create-form-dialog.component";
+import { filter, switchMap } from "rxjs";
 
 @Component({
   selector: 'app-producers',
@@ -15,21 +16,15 @@ export class ProducersComponent {
   ) { }
 
   createProducer() {
-    this.openDialog('0ms', '0ms');
+    this.openDialog();
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string) {
-    const dialogRef = this.dialog.open(ProducerCreateFormDialogComponent, {
-      enterAnimationDuration,
-      exitAnimationDuration,
-    });
+  openDialog() {
+    const dialogRef = this.dialog.open(ProducerCreateFormDialogComponent);
 
-    dialogRef.afterClosed().subscribe(
-      producer => {
-        if (producer) {
-          this.producerService.createProducer(producer).subscribe();
-        }
-      }
-    )
+    dialogRef.afterClosed().pipe(
+      filter(Boolean),
+      switchMap(producer => this.producerService.createProducer(producer))
+    ).subscribe();
   }
 }

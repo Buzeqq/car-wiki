@@ -7,6 +7,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   ProducerDetailDeleteDialogComponent
 } from "../producer-detail-delete-dialog/producer-detail-delete-dialog.component";
+import {ProducerCreateFormDialogComponent} from "../producer-create-form-dialog/producer-create-form-dialog.component";
+import {filter, switchMap, tap} from "rxjs";
 
 @Component({
   selector: 'app-producer-detail',
@@ -29,14 +31,16 @@ export class ProducerDetailComponent {
   }
 
   deleteProducer(producer: ProducerDetail): void {
-    this.openDialog('0ms', '0ms', producer);
+    this.openDeleteDialog(producer);
   }
 
-  private openDialog(enterAnimationDuration: string, exitAnimationDuration: string, producer: ProducerDetail): void {
-    const dialogRef = this.dialog.open(ProducerDetailDeleteDialogComponent, {
-        width: '250px',
-        enterAnimationDuration,
-        exitAnimationDuration,
+  editProducer(producer: ProducerDetail): void {
+    this.openEditDialog(producer);
+  }
+
+  private openEditDialog(producer: ProducerDetail): void {
+    const oldProducer = producer;
+    const dialogRef = this.dialog.open(ProducerCreateFormDialogComponent, {
         data: producer
       }
     );
@@ -44,10 +48,23 @@ export class ProducerDetailComponent {
     dialogRef.afterClosed().subscribe(
       confirmation => {
         if (confirmation) {
-          this.producerService.deleteProducer(producer.name).subscribe();
+          this.producerService.updateProducer(oldProducer, producer).subscribe();
           this.goBack();
         }
       }
     );
+  }
+
+  private openDeleteDialog(producer: ProducerDetail): void {
+    const dialogRef = this.dialog.open(ProducerDetailDeleteDialogComponent, {
+        data: producer
+      }
+    );
+
+    dialogRef.afterClosed().pipe(
+      filter(Boolean),
+      tap(() => this.goBack()),
+      switchMap(() => this.producerService.deleteProducer(producer.name))
+    ).subscribe();
   }
 }
