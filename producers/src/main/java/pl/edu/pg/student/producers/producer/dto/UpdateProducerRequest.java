@@ -19,7 +19,6 @@ public class UpdateProducerRequest {
 
     public static BiFunction<Producer, UpdateProducerRequest, Producer> dtoToEntityUpdater() {
         return (producer, request) -> {
-            producer.setName(request.getName());
             producer.setFoundationYear(request.getFoundationYear());
             return producer;
         };

@@ -45,7 +45,7 @@ DELETE http://localhost:8080/api/cars/5
 
 ###
 
-GET http://localhost:8080/api/producers/Mazda
+GET http://localhost:8080/api/producers/Mitsubishi
 
 ###
 
@@ -61,9 +61,9 @@ PUT http://localhost:8080/api/producers/Mitsubishi
 Content-Type: application/json
 
 {
-  "name": "Mitsubishi",
-  "foundationYear": 2022
+  "foundationYear": 2019
 }
+
 ###
 
 POST http://localhost:8080/api/producers
