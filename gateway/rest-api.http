@@ -8,7 +8,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/cars/5
+GET http://localhost:8080/api/cars/6
 Accept: application/json
 
 ###
@@ -37,7 +37,7 @@ GET http://localhost:8080/api/producers
 
 ###
 
-GET http://localhost:8080/api/producers/Mitsubishi
+GET http://localhost:8080/api/producers/Toyota
 
 ###
 
@@ -76,4 +76,4 @@ Content-Type: application/json
 
 ###
 
-GET http://172.20.10.9:8081/actuator/health
+GET http://localhost:8081/actuator/health

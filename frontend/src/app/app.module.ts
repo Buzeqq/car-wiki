@@ -17,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-dialog/producer-detail-delete-dialog.component';
 import { ProducerCreateFormDialogComponent } from './producer-create-form-dialog/producer-create-form-dialog.component';
+import { CarsComponent } from './cars/cars.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProducerCreateFormDialogComponent } from './producer-create-form-dialog
     ProducerDetailComponent,
     ProducerDetailDeleteDialogComponent,
     ProducerCreateFormDialogComponent,
+    CarsComponent,
   ],
     imports: [
         BrowserModule,
