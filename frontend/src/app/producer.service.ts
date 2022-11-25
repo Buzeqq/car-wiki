@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Producer, ProducerDetail } from "./producer";
-import {BehaviorSubject, catchError, map, Observable, of, tap} from "rxjs";
+import { BehaviorSubject, catchError, map, Observable, of, tap } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
@@ -44,15 +44,18 @@ export class ProducerService {
   createProducer(newProducer: ProducerDetail): Observable<any> {
     this.producers$.next(this.producers$.value.concat(newProducer.name));
 
-    return this.http.post<ProducerDetail>(ProducerService.producerUrl, newProducer);
+    return this.http.post<ProducerDetail>(ProducerService.producerUrl, newProducer).pipe(
+      catchError(() => {
+        this.producers$.next(this.producers$.value.filter(producer => producer !== newProducer.name));
+        return of(null);
+      })
+    );
   }
 
   updateProducer(oldProducer: ProducerDetail, newProducer: ProducerDetail): Observable<any> {
     this.producers$.next(this.producers$.value
       .filter(producer => oldProducer.name !== producer)
       .concat(newProducer.name));
-
-    console.log(newProducer);
 
     return this.http.put<ProducerDetail>(ProducerService.producerUrl + '/' + oldProducer.name, newProducer).pipe(
       tap(response => console.log(response)),
