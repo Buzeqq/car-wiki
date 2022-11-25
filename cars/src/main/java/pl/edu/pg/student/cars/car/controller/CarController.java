@@ -10,6 +10,8 @@ import pl.edu.pg.student.cars.car.dto.GetCarsResponse;
 import pl.edu.pg.student.cars.car.dto.UpdateCarRequest;
 import pl.edu.pg.student.cars.car.entity.Car;
 import pl.edu.pg.student.cars.car.service.CarService;
+import pl.edu.pg.student.cars.producer.entity.Producer;
+import pl.edu.pg.student.cars.producer.service.ProducerService;
 
 import java.util.Optional;
 
@@ -18,10 +20,12 @@ import java.util.Optional;
 public class CarController {
 
     public final CarService carService;
+    public final ProducerService producerService;
 
     @Autowired
-    public CarController(CarService carService) {
+    public CarController(CarService carService, ProducerService producerService) {
         this.carService = carService;
+        this.producerService = producerService;
     }
 
     @GetMapping
@@ -39,8 +43,14 @@ public class CarController {
 
     @PostMapping
     public ResponseEntity<Void> createCar(@RequestBody CreateCarRequest request, UriComponentsBuilder builder) {
+        Optional<Producer> producer = producerService.find(request.getProducer());
+
+        if (producer.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
         Car car = CreateCarRequest
-                .dtoToEntityMapper(() -> null)
+                .dtoToEntityMapper(producer::get)
                 .apply(request);
 
         carService.create(car);
