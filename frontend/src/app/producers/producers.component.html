@@ -1,9 +1,14 @@
 <ng-container *ngIf="producerService.producers$ | async as producers; else loading">
   <h2>Producers</h2>
   <mat-selection-list [multiple]="false">
-    <mat-list-option *ngFor="let producer of producers" [value]="producer" routerLink="/detail/{{producer}}">
-      {{producer}}
-    </mat-list-option>
+    <div *ngFor="let producer of producers" class="list-record">
+      <mat-list-option  [value]="producer" routerLink="/detail/{{producer}}">
+        {{producer}}
+      </mat-list-option>
+      <div>
+        <button mat-icon-button color="warn" (click)="deleteProducer(producer)">Delete</button>
+      </div>
+    </div>
   </mat-selection-list>
 
   <button mat-raised-button color="primary" (click)="createProducer()">Create new producer</button>

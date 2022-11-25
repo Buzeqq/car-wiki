@@ -24,7 +24,9 @@ export class ProducerCreateFormDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    if (this.data?.isEdit) {
+      this.form.get('name')?.disable();
+    }
   }
 
   abort() {

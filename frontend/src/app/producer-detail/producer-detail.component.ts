@@ -4,9 +4,6 @@ import { ActivatedRoute } from "@angular/router";
 import { ProducerService } from "../producer.service";
 import { Location } from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
-import {
-  ProducerDetailDeleteDialogComponent
-} from "../producer-detail-delete-dialog/producer-detail-delete-dialog.component";
 import {ProducerCreateFormDialogComponent} from "../producer-create-form-dialog/producer-create-form-dialog.component";
 import {filter, switchMap, tap} from "rxjs";
 
@@ -30,9 +27,9 @@ export class ProducerDetailComponent {
     this.location.back();
   }
 
-  deleteProducer(producer: ProducerDetail): void {
-    this.openDeleteDialog(producer);
-  }
+  // deleteProducer(producer: ProducerDetail): void {
+  //   this.openDeleteDialog(producer);
+  // }
 
   editProducer(producer: ProducerDetail): void {
     this.openEditDialog(producer);
@@ -55,16 +52,16 @@ export class ProducerDetailComponent {
     ).subscribe();
   }
 
-  private openDeleteDialog(producer: ProducerDetail): void {
-    const dialogRef = this.dialog.open(ProducerDetailDeleteDialogComponent, {
-        data: producer
-      }
-    );
-
-    dialogRef.afterClosed().pipe(
-      filter(Boolean),
-      tap(() => this.goBack()),
-      switchMap(() => this.producerService.deleteProducer(producer.name))
-    ).subscribe();
-  }
+  // private openDeleteDialog(producer: ProducerDetail): void {
+  //   const dialogRef = this.dialog.open(ProducerDetailDeleteDialogComponent, {
+  //       data: producer
+  //     }
+  //   );
+  //
+  //   dialogRef.afterClosed().pipe(
+  //     filter(Boolean),
+  //     tap(() => this.goBack()),
+  //     switchMap(() => this.producerService.deleteProducer(producer.name))
+  //   ).subscribe();
+  // }
 }
