@@ -6,6 +6,10 @@ import { Location } from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {ProducerCreateFormDialogComponent} from "../producer-create-form-dialog/producer-create-form-dialog.component";
 import {filter, switchMap, tap} from "rxjs";
+import {
+  ProducerDetailDeleteDialogComponent
+} from "../producer-detail-delete-dialog/producer-detail-delete-dialog.component";
+import {CarService} from "../car.service";
 
 @Component({
   selector: 'app-producer-detail',
@@ -20,16 +24,21 @@ export class ProducerDetailComponent {
     private route: ActivatedRoute,
     private producerService: ProducerService,
     private location: Location,
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    public readonly carService: CarService,
+  ) {
+    carService.getCarsByProducer(this.route.snapshot.paramMap.get('name')!).subscribe(
+      resp => console.log(resp)
+    );
+  }
 
   goBack(): void {
     this.location.back();
   }
 
-  // deleteProducer(producer: ProducerDetail): void {
-  //   this.openDeleteDialog(producer);
-  // }
+  deleteProducer(producer: ProducerDetail): void {
+    this.openDeleteDialog(producer);
+  }
 
   editProducer(producer: ProducerDetail): void {
     this.openEditDialog(producer);
@@ -52,16 +61,16 @@ export class ProducerDetailComponent {
     ).subscribe();
   }
 
-  // private openDeleteDialog(producer: ProducerDetail): void {
-  //   const dialogRef = this.dialog.open(ProducerDetailDeleteDialogComponent, {
-  //       data: producer
-  //     }
-  //   );
-  //
-  //   dialogRef.afterClosed().pipe(
-  //     filter(Boolean),
-  //     tap(() => this.goBack()),
-  //     switchMap(() => this.producerService.deleteProducer(producer.name))
-  //   ).subscribe();
-  // }
+  private openDeleteDialog(producer: ProducerDetail): void {
+    const dialogRef = this.dialog.open(ProducerDetailDeleteDialogComponent, {
+        data: producer
+      }
+    );
+
+    dialogRef.afterClosed().pipe(
+      filter(Boolean),
+      tap(() => this.goBack()),
+      switchMap(() => this.producerService.deleteProducer(producer.name))
+    ).subscribe();
+  }
 }

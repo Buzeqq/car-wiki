@@ -3,9 +3,6 @@ import { ProducerService } from "../producer.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ProducerCreateFormDialogComponent } from "../producer-create-form-dialog/producer-create-form-dialog.component";
 import {filter, switchMap} from "rxjs";
-import {
-  ProducerDetailDeleteDialogComponent
-} from "../producer-detail-delete-dialog/producer-detail-delete-dialog.component";
 
 @Component({
   selector: 'app-producers',
@@ -31,19 +28,19 @@ export class ProducersComponent {
     ).subscribe();
   }
 
-  deleteProducer(producer: string): void {
-    this.openDeleteDialog(producer);
-  }
+  // deleteProducer(producer: string): void {
+  //   this.openDeleteDialog(producer);
+  // }
 
-  private openDeleteDialog(producer: string): void {
-    const dialogRef = this.dialog.open(ProducerDetailDeleteDialogComponent, {
-        data: producer
-      }
-    );
-
-    dialogRef.afterClosed().pipe(
-      filter(Boolean),
-      switchMap(() => this.producerService.deleteProducer(producer))
-    ).subscribe();
-  }
+  // private openDeleteDialog(producer: string): void {
+  //   const dialogRef = this.dialog.open(ProducerDetailDeleteDialogComponent, {
+  //       data: producer
+  //     }
+  //   );
+  //
+  //   dialogRef.afterClosed().pipe(
+  //     filter(Boolean),
+  //     switchMap(() => this.producerService.deleteProducer(producer))
+  //   ).subscribe();
+  // }
 }

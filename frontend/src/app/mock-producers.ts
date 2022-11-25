@@ -1,4 +1,4 @@
-import {Producer, ProducerDetail} from "./producer";
+import { ProducerDetail } from "./producer";
 
 export const PRODUCERS: ProducerDetail[] = [
   { name: "Mazda", foundationYear: 1999 },
