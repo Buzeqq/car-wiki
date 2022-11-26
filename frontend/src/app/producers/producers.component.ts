@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProducerService } from "../producer.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ProducerCreateFormDialogComponent } from "../producer-create-form-dialog/producer-create-form-dialog.component";
-import {filter, switchMap} from "rxjs";
+import { filter, switchMap } from "rxjs";
 
 @Component({
   selector: 'app-producers',

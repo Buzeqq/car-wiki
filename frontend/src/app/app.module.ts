@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ProducersComponent } from './producers/producers.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from "@angular/material/list";
 import { MatCardModule } from "@angular/material/card";
@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-dialog/producer-detail-delete-dialog.component';
 import { ProducerCreateFormDialogComponent } from './producer-create-form-dialog/producer-create-form-dialog.component';
 import { CarsComponent } from './cars/cars.component';
+import {MatRippleModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -28,21 +29,22 @@ import { CarsComponent } from './cars/cars.component';
     ProducerCreateFormDialogComponent,
     CarsComponent,
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        MatListModule,
-        MatCardModule,
-        MatButtonModule,
-        MatDialogModule,
-        MatFormFieldModule,
-        MatInputModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatProgressSpinnerModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatListModule,
+    MatRippleModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

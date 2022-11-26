@@ -20,18 +20,15 @@ import {CarService} from "../car.service";
 export class ProducerDetailComponent {
   public readonly producerDetail$ = this.producerService.getProducer(this.route.snapshot.queryParamMap.get('name')!);
 
+  public readonly cars$ = this.carService.getCarsByProducer(this.route.snapshot.queryParamMap.get('name')!);
 
   constructor(
     private route: ActivatedRoute,
     private producerService: ProducerService,
+    private carService: CarService,
     private location: Location,
     public dialog: MatDialog,
-    public readonly carService: CarService,
-  ) {
-    carService.getCarsByProducer(this.route.snapshot.queryParamMap.get('name')!).subscribe(
-      resp => console.log(resp)
-    );
-  }
+  ) { }
 
   goBack(): void {
     this.location.back();
