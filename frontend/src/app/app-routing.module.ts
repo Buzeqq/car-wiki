@@ -4,9 +4,9 @@ import { RouterModule, Routes } from "@angular/router";
 import { ProducerDetailComponent } from "./producer-detail/producer-detail.component";
 
 const routes: Routes = [
-  { path: "producers", component: ProducersComponent },
+  { path: 'producers', component: ProducersComponent },
   { path: '', redirectTo: '/producers', pathMatch: 'full' },
-  { path: 'detail/:name', component: ProducerDetailComponent },
+  { path: 'producer', component: ProducerDetailComponent },
 ]
 
 @NgModule({

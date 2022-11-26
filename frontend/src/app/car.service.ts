@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from "rxjs";
-import {Producer} from "./producer";
-import {HttpClient} from "@angular/common/http";
-import {Car} from "./car";
+import { catchError, map, Observable, of } from "rxjs";
+import { Producer } from "./producer";
+import { HttpClient } from "@angular/common/http";
+import { Car, CarDetail } from "./car";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class CarService {
 
   constructor(private http: HttpClient) { }
 
-  public getCars(): Observable<Car[]> {
+  getCars(): Observable<Car[]> {
     return this.http.get<{
       cars: Car[]
     }>(CarService.carUrl).pipe(
@@ -21,11 +21,47 @@ export class CarService {
     );
   }
 
-  public getCarsByProducer(name: Producer) {
+  getCarsByProducer(name: Producer) {
     return this.http.get<{
       cars: Car[]
     }>(CarService.producerUrl + '/' + name + '/cars').pipe(
       map(resp => resp.cars)
+    );
+  }
+
+  deleteCar(id: number): Observable<any> {
+    return this.http.delete<Car>(CarService.carUrl + '/' + id).pipe(
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+    );
+  }
+
+  deleteCarByProducer(id: number, producer: Producer): Observable<any> {
+    return this.http.delete<Car>(CarService.producerUrl + '/' + producer + '/cars/' + id).pipe(
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+    );
+  }
+
+  createCar(newCar: CarDetail): Observable<any> {
+    return this.http.post<CarDetail>(CarService.carUrl, newCar).pipe(
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+    );
+  }
+
+  createCarByProducer(newCar: CarDetail, producer: Producer): Observable<any> {
+    return this.http.post<CarDetail>(CarService.producerUrl + '/' + producer + '/cars', newCar).pipe(
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
     );
   }
 }

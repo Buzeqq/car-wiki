@@ -2,7 +2,7 @@
   <h2>Producers</h2>
   <mat-selection-list [multiple]="false">
     <div *ngFor="let producer of producers" class="list-record">
-      <mat-list-option  [value]="producer" routerLink="/detail/{{producer}}">
+      <mat-list-option  [value]="producer" routerLink="/producer" [queryParams]="{ name: producer }">
         {{producer}}
       </mat-list-option>
 <!--      <div>-->
