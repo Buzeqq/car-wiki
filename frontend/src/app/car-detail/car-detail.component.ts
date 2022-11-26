@@ -65,7 +65,7 @@ export class CarDetailComponent {
     dialogRef.afterClosed().pipe(
       filter(Boolean),
       tap(() => this.goBack()),
-      switchMap(() => this.carService.deleteCar(car.id))
+      switchMap(() => this.carService.deleteCar(car))
     ).subscribe();
   }
 }

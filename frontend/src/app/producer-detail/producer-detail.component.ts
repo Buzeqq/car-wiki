@@ -10,8 +10,7 @@ import {
   ProducerDetailDeleteDialogComponent
 } from "../producer-detail-delete-dialog/producer-detail-delete-dialog.component";
 import { CarService } from "../car.service";
-import { Car } from "../car";
-import {CarCreateFormDialogComponent} from "../car-create-form-dialog/car-create-form-dialog.component";
+import { CarCreateFormDialogComponent } from "../car-create-form-dialog/car-create-form-dialog.component";
 
 @Component({
   selector: 'app-producer-detail',
@@ -20,8 +19,8 @@ import {CarCreateFormDialogComponent} from "../car-create-form-dialog/car-create
 })
 
 export class ProducerDetailComponent {
-  public readonly producerDetail$ = this.producerService.getProducer(this.route.snapshot.queryParamMap.get('name')!);
 
+  public readonly producerDetail$ = this.producerService.getProducer(this.route.snapshot.queryParamMap.get('name')!);
   public readonly cars$ = this.carService.getCarsByProducer(this.route.snapshot.queryParamMap.get('name')!);
 
   constructor(
@@ -44,9 +43,9 @@ export class ProducerDetailComponent {
     this.openEditDialog(producer);
   }
 
-  deleteCar(car: Car): void {
-    this.carService.deleteCar(car.id).subscribe();
-  }
+  // deleteCar(car: Car): void {
+  //   this.carService.deleteCar(car.id).subscribe();
+  // }
 
   createCar(): void {
     this.openCreateCarDialog();
