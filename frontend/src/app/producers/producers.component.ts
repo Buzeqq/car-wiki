@@ -15,11 +15,11 @@ export class ProducersComponent {
     public dialog: MatDialog
   ) { }
 
-  createProducer() {
+  createProducer(): void {
     this.openDialog();
   }
 
-  openDialog() {
+  private openDialog(): void {
     const dialogRef = this.dialog.open(ProducerCreateFormDialogComponent);
 
     dialogRef.afterClosed().pipe(

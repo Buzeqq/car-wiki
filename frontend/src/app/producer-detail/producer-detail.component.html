@@ -1,7 +1,7 @@
 <ng-container *ngIf="producerDetail$ | async as producer; else loading">
   <mat-card>
     <mat-card-title>{{producer.name}}</mat-card-title>
-    <mat-card-content>Producer foundation year: {{producer.foundationYear}}</mat-card-content>
+    <mat-card-content>Foundation year: {{producer.foundationYear}}</mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="warn" (click)="deleteProducer(producer)">Delete</button>
       <button mat-raised-button (click)="editProducer(producer)">Edit</button>
@@ -11,11 +11,19 @@
   <button mat-raised-button type="button" (click)="goBack()">Go back</button>
 </ng-container>
 
+<h2>Cars</h2>
 <ng-container *ngIf="cars$ | async as cars; else loading">
   <mat-list role="list">
-    <mat-list-item *ngFor="let car of cars">{{car.id}} {{car.name}}</mat-list-item>
+    <div *ngFor="let car of cars" class="list-record">
+      <mat-list-item mat-ripple routerLink="/car" [queryParams]="{ id: car.id }">{{car.name}}</mat-list-item>
+      <div>
+<!--        <button mat-icon-button color="warn" (click)="deleteCar(car)">Delete</button>-->
+      </div>
+    </div>
   </mat-list>
 </ng-container>
+
+<button mat-raised-button color="primary" (click)="createCar()">Create new car</button>
 
 <ng-template #loading>
   <mat-spinner></mat-spinner>

@@ -1,0 +1,24 @@
+<h1 mat-dialog-title [textContent]="data?.isEdit ? 'Edit car' : 'Create car'"></h1>
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput required formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Horse power</mat-label>
+    <input matInput type="number" required formControlName="horsePower">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Producer</mat-label>
+    <mat-select required formControlName="producer">
+      <mat-option *ngFor="let producer of data?.producers" [value]="producer">{{producer}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="abort()">Abort</button>
+  <button mat-raised-button cdkFocusInitial color="primary" type="submit" (click)="create()" [textContent]="data?.isEdit ? 'Update' : 'Create'"></button>
+</mat-dialog-actions>

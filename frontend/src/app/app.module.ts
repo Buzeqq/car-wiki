@@ -19,6 +19,10 @@ import { ProducerDetailDeleteDialogComponent } from './producer-detail-delete-di
 import { ProducerCreateFormDialogComponent } from './producer-create-form-dialog/producer-create-form-dialog.component';
 import { CarsComponent } from './cars/cars.component';
 import {MatRippleModule} from "@angular/material/core";
+import { CarDetailComponent } from './car-detail/car-detail.component';
+import { CarDetailDeleteDialogComponent } from './car-detail-delete-dialog/car-detail-delete-dialog.component';
+import { CarCreateFormDialogComponent } from './car-create-form-dialog/car-create-form-dialog.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -28,23 +32,27 @@ import {MatRippleModule} from "@angular/material/core";
     ProducerDetailDeleteDialogComponent,
     ProducerCreateFormDialogComponent,
     CarsComponent,
+    CarDetailComponent,
+    CarDetailDeleteDialogComponent,
+    CarCreateFormDialogComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    ReactiveFormsModule,
-    MatListModule,
-    MatRippleModule,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+        ReactiveFormsModule,
+        MatListModule,
+        MatRippleModule,
+        MatSelectModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

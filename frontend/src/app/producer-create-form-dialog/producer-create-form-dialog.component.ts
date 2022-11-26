@@ -34,6 +34,8 @@ export class ProducerCreateFormDialogComponent implements OnInit {
   }
 
   create() {
+    this.form.get('name')?.enable(); // może da się zrobić jakoś lepiej, jeżeli nie ma to po update producer.name jest nullem
+    console.log(this.form.value);
     this.dialogRef.close(this.form.value);
   }
 }

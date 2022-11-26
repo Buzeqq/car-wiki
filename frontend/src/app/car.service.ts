@@ -29,6 +29,28 @@ export class CarService {
     );
   }
 
+  getCar(id: number): Observable<CarDetail> {
+    return this.http.get<CarDetail>(CarService.carUrl + '/' + id);
+  }
+
+  createCar(newCar: CarDetail): Observable<any> {
+    return this.http.post<CarDetail>(CarService.carUrl, newCar).pipe(
+      catchError(err => {
+        console.log(err);
+        return of(null);
+      })
+    );
+  }
+
+  updateCar(oldCar: CarDetail, newCar: CarDetail): Observable<any> {
+    return this.http.put<CarDetail>(CarService.carUrl + '/' + oldCar.id, newCar).pipe(
+      catchError(error => {
+        console.log(error);
+        return of(null);
+      })
+    );
+  }
+
   deleteCar(id: number): Observable<any> {
     return this.http.delete<Car>(CarService.carUrl + '/' + id).pipe(
       catchError(err => {
@@ -40,15 +62,6 @@ export class CarService {
 
   deleteCarByProducer(id: number, producer: Producer): Observable<any> {
     return this.http.delete<Car>(CarService.producerUrl + '/' + producer + '/cars/' + id).pipe(
-      catchError(err => {
-        console.log(err);
-        return of(null);
-      })
-    );
-  }
-
-  createCar(newCar: CarDetail): Observable<any> {
-    return this.http.post<CarDetail>(CarService.carUrl, newCar).pipe(
       catchError(err => {
         console.log(err);
         return of(null);

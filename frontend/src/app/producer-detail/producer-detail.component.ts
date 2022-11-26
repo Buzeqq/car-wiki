@@ -3,13 +3,15 @@ import { ProducerDetail } from "../producer";
 import { ActivatedRoute } from "@angular/router";
 import { ProducerService } from "../producer.service";
 import { Location } from "@angular/common";
-import {MatDialog} from "@angular/material/dialog";
-import {ProducerCreateFormDialogComponent} from "../producer-create-form-dialog/producer-create-form-dialog.component";
-import {filter, switchMap, tap} from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
+import { ProducerCreateFormDialogComponent } from "../producer-create-form-dialog/producer-create-form-dialog.component";
+import { filter, switchMap, tap } from "rxjs";
 import {
   ProducerDetailDeleteDialogComponent
 } from "../producer-detail-delete-dialog/producer-detail-delete-dialog.component";
-import {CarService} from "../car.service";
+import { CarService } from "../car.service";
+import { Car } from "../car";
+import {CarCreateFormDialogComponent} from "../car-create-form-dialog/car-create-form-dialog.component";
 
 @Component({
   selector: 'app-producer-detail',
@@ -42,6 +44,14 @@ export class ProducerDetailComponent {
     this.openEditDialog(producer);
   }
 
+  deleteCar(car: Car): void {
+    this.carService.deleteCar(car.id).subscribe();
+  }
+
+  createCar(): void {
+    this.openCreateCarDialog();
+  }
+
   private openEditDialog(producer: ProducerDetail): void {
     const oldProducer = producer;
     const dialogRef = this.dialog.open(ProducerCreateFormDialogComponent, {
@@ -69,6 +79,20 @@ export class ProducerDetailComponent {
       filter(Boolean),
       tap(() => this.goBack()),
       switchMap(() => this.producerService.deleteProducer(producer.name))
+    ).subscribe();
+  }
+
+  private openCreateCarDialog() {
+    const dialogRef = this.dialog.open(CarCreateFormDialogComponent, {
+      data: {
+        car: { producer: this.route.snapshot.queryParamMap.get('name')!},
+        producers: this.producerService.producers$.value
+      }
+    });
+
+    dialogRef.afterClosed().pipe(
+      filter(Boolean),
+      switchMap(car => this.carService.createCar(car))
     ).subscribe();
   }
 }

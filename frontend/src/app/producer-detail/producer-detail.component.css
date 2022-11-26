@@ -1,3 +1,18 @@
 :host > mat-card {
   margin-bottom: 20px;
 }
+
+:host > mat-list {
+  margin-bottom: 20px;
+}
+
+.list-record {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: rgba(128, 128, 128, 0.2) 1px solid;
+}
+
+.list-record:first-child {
+  border-top: rgba(128, 128, 128, 0.2) 1px solid;
+}

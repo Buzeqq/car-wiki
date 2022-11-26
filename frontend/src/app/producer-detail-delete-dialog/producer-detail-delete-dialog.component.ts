@@ -8,9 +8,10 @@ import { ProducerDetail } from "../producer";
   styleUrls: ['./producer-detail-delete-dialog.component.css']
 })
 export class ProducerDetailDeleteDialogComponent {
-  constructor(public dialogRef: MatDialogRef<ProducerDetailDeleteDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public producer: ProducerDetail) {
-  }
+  constructor(
+    public dialogRef: MatDialogRef<ProducerDetailDeleteDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public producer: ProducerDetail
+  ) { }
 
   delete() {
     this.dialogRef.close(true);
