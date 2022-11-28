@@ -9,18 +9,19 @@
   </mat-card>
 
   <button mat-raised-button type="button" (click)="goBack()">Go back</button>
-</ng-container>
 
-<h2>Cars</h2>
-<ng-container *ngIf="cars$ | async as cars; else loading">
-  <mat-list role="list">
-    <div *ngFor="let car of cars" class="list-record">
-      <mat-list-item mat-ripple routerLink="/car" [queryParams]="{ id: car.id }">{{car.name}}</mat-list-item>
-      <div>
-<!--        <button mat-icon-button color="warn" (click)="deleteCar(car)">Delete</button>-->
+
+  <h2>Cars</h2>
+  <ng-container *ngIf="carService.cars$ | async as cars; else loading">
+    <mat-list role="list">
+      <div *ngFor="let car of cars.get(producer.name)" class="list-record">
+        <mat-list-item mat-ripple routerLink="/car" [queryParams]="{ id: car.id }">{{car.name}}</mat-list-item>
+        <div>
+  <!--        <button mat-icon-button color="warn" (click)="deleteCar(car)">Delete</button>-->
+        </div>
       </div>
-    </div>
-  </mat-list>
+    </mat-list>
+  </ng-container>
 </ng-container>
 
 <button mat-raised-button color="primary" (click)="createCar()">Create new car</button>

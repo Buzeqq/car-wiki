@@ -26,7 +26,7 @@ export class ProducerDetailComponent {
   constructor(
     private route: ActivatedRoute,
     private producerService: ProducerService,
-    private carService: CarService,
+    public readonly carService: CarService,
     private location: Location,
     public dialog: MatDialog,
   ) { }
@@ -81,7 +81,7 @@ export class ProducerDetailComponent {
     ).subscribe();
   }
 
-  private openCreateCarDialog() {
+  private openCreateCarDialog(): void {
     const dialogRef = this.dialog.open(CarCreateFormDialogComponent, {
       data: {
         car: { producer: this.route.snapshot.queryParamMap.get('name')!},
@@ -91,7 +91,6 @@ export class ProducerDetailComponent {
 
     dialogRef.afterClosed().pipe(
       filter(Boolean),
-      switchMap(car => this.carService.createCar(car))
-    ).subscribe();
+    ).subscribe(car => this.carService.createCar(car));
   }
 }

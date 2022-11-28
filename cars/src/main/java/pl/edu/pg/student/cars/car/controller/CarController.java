@@ -42,7 +42,7 @@ public class CarController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createCar(@RequestBody CreateCarRequest request, UriComponentsBuilder builder) {
+    public ResponseEntity<Long> createCar(@RequestBody CreateCarRequest request, UriComponentsBuilder builder) {
         Optional<Producer> producer = producerService.find(request.getProducer());
 
         if (producer.isEmpty()) {
@@ -58,7 +58,7 @@ public class CarController {
         return ResponseEntity
                 .created(builder
                         .pathSegment("api", "cars", "{id}").buildAndExpand(car.getId()).toUri())
-                .build();
+                .body(car.getId());
     }
 
     @DeleteMapping("{id}")
