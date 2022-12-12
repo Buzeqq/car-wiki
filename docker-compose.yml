@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  main:
+    container_name: 'aui-front-back'
+    build: ./
+    ports:
+      - "8080:8080"
+
+networks:
+  internal_nw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
