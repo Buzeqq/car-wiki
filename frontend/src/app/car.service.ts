@@ -34,10 +34,18 @@ export class CarService {
   }
 
   getCarsByProducer(name: Producer): Observable<Car[]> {
+    if (!this.producerService.producers$.value.find(value => value === name)) {
+      this.cars$.value.set(name, []);
+      this.cars$.next(this.cars$.value);
+    }
     return this.http.get<{
       cars: Car[]
     }>(CarService.producerUrl + '/' + name + '/cars').pipe(
-      map(resp => resp.cars)
+      map(resp => resp.cars),
+      catchError( err => {
+        console.log(err);
+        return of([]);
+      })
     );
   }
 
@@ -56,7 +64,11 @@ export class CarService {
         return of(null);
       })
     ).subscribe(car => {
-      this.cars$.value.set(newCar.producer, this.cars$.value.get(newCar.producer)!.concat(car!));
+      if (this.cars$.value.has(newCar.producer)) {
+        this.cars$.value.set(newCar.producer, this.cars$.value.get(newCar.producer)!.concat(car!));
+      } else {
+        this.cars$.value.set(newCar.producer, [car!]);
+      }
       this.cars$.next(this.cars$.value);
     });
   }
@@ -64,7 +76,7 @@ export class CarService {
   updateCar(oldCar: CarDetail, newCar: CarDetail): Observable<any> {
     const newCars = this.cars$.value.get(newCar.producer)!
       .filter(car => car.id !== oldCar.id)
-      .concat({ id: newCar.id, name: newCar.name });
+      .concat({ id: oldCar.id, name: newCar.name });
     this.cars$.value.set(newCar.producer, newCars);
     this.cars$.next(this.cars$.value);
 
@@ -73,7 +85,7 @@ export class CarService {
         console.log(error);
 
         const oldCars = this.cars$.value.get(newCar.producer)!
-          .filter(car => car.id !== newCar.id)
+          .filter(car => car.id !== oldCar.id)
           .concat({ id: oldCar.id, name: oldCar.name });
         this.cars$.value.set(newCar.producer, oldCars);
         this.cars$.next(this.cars$.value);

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { CarDetail } from "../car";
@@ -9,7 +9,7 @@ import { Producer } from "../producer";
   templateUrl: './car-create-form-dialog.component.html',
   styleUrls: ['./car-create-form-dialog.component.css']
 })
-export class CarCreateFormDialogComponent {
+export class CarCreateFormDialogComponent implements OnInit {
 
   public form: FormGroup = this.fb.group({
     name: this.data?.car.name ? this.data.car.name : '',
@@ -27,12 +27,18 @@ export class CarCreateFormDialogComponent {
     }
   ) { }
 
+  ngOnInit(): void {
+    if (this.data?.isEdit) {
+      this.form.get('producer')?.disable();
+    }
+  }
 
   abort() {
     this.dialogRef.close();
   }
 
   create() {
+    this.form.get('producer')?.enable();
     this.dialogRef.close(this.form.value);
   }
 }

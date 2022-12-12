@@ -11,7 +11,9 @@ export class ProducerService {
 
   readonly producers$ = new BehaviorSubject<Producer[]>([]);
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+  ) {
     this.getProducers().subscribe(producers => {
       this.producers$.next(producers);
     });
