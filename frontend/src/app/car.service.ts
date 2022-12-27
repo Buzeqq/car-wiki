@@ -4,6 +4,7 @@ import { Producer } from "./producer";
 import { HttpClient } from "@angular/common/http";
 import { Car, CarDetail } from "./car";
 import { ProducerService } from "./producer.service";
+import {environment} from "../environments/environment";
 
 export type ProducerName = string;
 
@@ -11,8 +12,8 @@ export type ProducerName = string;
   providedIn: 'root'
 })
 export class CarService {
-  private static readonly producerUrl = '//localhost:8080/api/producers';
-  private static readonly carUrl = '//localhost:8080/api/cars';
+  private static readonly producerUrl = environment.producerUrl;
+  private static readonly carUrl = environment.carUrl;
 
   readonly cars$ = new BehaviorSubject<Map<ProducerName, Car[]>>(new Map());
 

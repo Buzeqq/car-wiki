@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Producer, ProducerDetail } from "./producer";
 import { BehaviorSubject, catchError, map, Observable, of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProducerService {
-  private static readonly producerUrl = '//localhost:8080/api/producers';
+  private static readonly producerUrl = environment.producerUrl;
 
   readonly producers$ = new BehaviorSubject<Producer[]>([]);
 
