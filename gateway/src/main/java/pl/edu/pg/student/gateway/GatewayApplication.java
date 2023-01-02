@@ -25,18 +25,23 @@ public class GatewayApplication {
 
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+        String host = environment.getProperty("server.host") + ":" + environment.getProperty("server.port");
+        String producers = "http://" + environment.getProperty("gateway.producers");
+        String cars = "http://" + environment.getProperty("gateway.cars");
+        System.out.printf("HOST: %s, PRODUCERS: %s, CARS: %s\n", host, producers, cars);
+
         return builder
                 .routes()
                 .route("producers", r -> r
-                        .host(environment.getProperty("server.host").concat(":").concat(environment.getProperty("server.port")))
+                        .host(host)
                         .and()
                         .path("/api/producers/{name}", "/api/producers")
-                        .uri("http://".concat(environment.getProperty("gateway.producers"))))
+                        .uri(producers))
                 .route("cars", r -> r
-                        .host(environment.getProperty("server.host").concat(":").concat(environment.getProperty("server.port")))
+                        .host(host)
                         .and()
                         .path("/api/cars", "/api/cars/**", "/api/producers/cars", "/api/producers/{name}/cars", "/api/producers/{name}/cars/**")
-                        .uri("http://".concat(environment.getProperty("gateway.cars"))))
+                        .uri(cars))
                 .build();
     }
 

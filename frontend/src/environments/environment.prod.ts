@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  producerUrl: '//172.28.0.5:8080/api/producers',
-  carUrl: '//172.28.0.5:8080/api/cars',
+  producerUrl: '//localhost:8000/api/producers',
+  carUrl: '//localhost:8000/api/cars',
 };
