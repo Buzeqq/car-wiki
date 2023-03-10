@@ -88,3 +88,7 @@ Content-Type: application/json
 ###
 
 GET http://172.20.10.9:8081/actuator/health
+
+###
+
+GET http://localhost:8080/api/producers

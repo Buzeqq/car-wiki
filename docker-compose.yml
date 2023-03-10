@@ -1,0 +1,63 @@
+version: '3.9'
+
+services:
+  proxy:
+    build: ./proxy/
+    ports:
+      - "8000:80"
+    networks:
+      internal_nw:
+        ipv4_address: 172.28.0.2
+    depends_on:
+      - frontend
+
+  cars:
+    build: ./cars/
+    environment:
+      - DB_USERNAME=admin
+      - DB_PASSWORD=adminadmin
+      - MSV_PORT=8082
+    networks:
+      internal_nw:
+        ipv4_address: 172.28.0.3
+
+  producers:
+    build: ./producers/
+    environment:
+      - DB_USERNAME=admin
+      - DB_PASSWORD=adminadmin
+      - MSV_PORT=8081
+      - CAR_API_ENDPOINT=http://172.28.0.3:8082/api/
+    networks:
+      internal_nw:
+        ipv4_address: 172.28.0.4
+    depends_on:
+      - cars
+
+  gateway:
+    build: ./gateway/
+    environment:
+      - MSV_PORT=8080
+      - HOST_ADDRESS=172.28.0.5
+      - CARS_ADDRESS=172.28.0.3:8082
+      - PRODUCERS_ADDRESS=172.28.0.4:8081
+    networks:
+      internal_nw:
+        ipv4_address: 172.28.0.5
+    depends_on:
+      - producers
+
+  frontend:
+    build: ./frontend/
+    networks:
+      internal_nw:
+        ipv4_address: 172.28.0.6
+    depends_on:
+      - gateway
+
+networks:
+  internal_nw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
