@@ -55,6 +55,31 @@ services:
     depends_on:
       - gateway
 
+  file-db:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=adminadmin
+      - MARIADB_DATABASE=fileTransfer
+    networks:
+      internal_nw:
+        ipv4_address: 172.28.0.7
+
+  file-transfer:
+    build: ./fileTransfer/
+    environment:
+      - DB_HOST=172.28.0.7
+      - STORAGE_LOCATION=/files
+      - MSV_PORT=8083
+    volumes:
+      - /Users/milosz/Documents/fileTransfer:/files
+    ports:
+      - "9300:8083"
+    networks:
+      internal_nw:
+        ipv4_address: 172.28.0.8
+    depends_on:
+      - file-db
+
 networks:
   internal_nw:
     driver: bridge
