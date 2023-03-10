@@ -1,0 +1,79 @@
+GET http://localhost:8080/api/cars
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/cars/1
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/cars/5
+Accept: application/json
+
+###
+
+POST http://localhost:8080/api/producers/Toyota/cars
+Content-Type: application/json
+
+{
+  "name": "Hilux",
+  "horsePower": 150
+}
+
+###
+
+PUT http://localhost:8080/api/cars/5
+Content-Type: application/json
+
+{
+  "name": "Lancer Evolution",
+  "horsePower": 260
+}
+
+###
+
+GET http://localhost:8080/api/producers
+
+###
+
+GET http://localhost:8080/api/producers/Mitsubishi
+
+###
+
+DELETE http://localhost:8080/api/cars/5
+
+###
+
+GET http://localhost:8080/api/producers/Mazda
+
+###
+
+GET http://localhost:8080/api/producers/Mazda/cars
+
+###
+
+DELETE http://localhost:8080/api/producers/Mazda
+
+###
+
+PUT http://localhost:8080/api/producers/Mitsubishi
+Content-Type: application/json
+
+{
+  "name": "Mitsubishi",
+  "foundationYear": 2022
+}
+###
+
+POST http://localhost:8080/api/producers
+Content-Type: application/json
+
+{
+  "name": "New Producer",
+  "foundationYear": 4200
+}
+
+###
+
+GET http://172.20.10.9:8081/actuator/health
