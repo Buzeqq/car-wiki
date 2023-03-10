@@ -1,0 +1,8 @@
+:host > nav {
+  margin-bottom: 20px;
+}
+
+:host > nav > a.mat-raised-button {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}

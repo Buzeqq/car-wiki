@@ -1,0 +1,19 @@
+<ng-container *ngIf="producerService.producers$ | async as producers; else loading">
+  <h2>Producers</h2>
+  <mat-list>
+    <div *ngFor="let producer of producers" class="list-record">
+      <mat-list-item matRipple routerLink="/producer" [queryParams]="{ name: producer }">
+        {{producer}}
+      </mat-list-item>
+<!--      <div>-->
+<!--        <button mat-icon-button color="warn" (click)="deleteProducer(producer)">Delete</button>-->
+<!--      </div>-->
+    </div>
+  </mat-list>
+
+  <button mat-raised-button color="primary" (click)="createProducer()">Create new producer</button>
+</ng-container>
+
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>

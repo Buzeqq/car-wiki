@@ -64,6 +64,7 @@ public class ProducerController {
     @PutMapping("{name}")
     public ResponseEntity<Void> updateProducer(@RequestBody UpdateProducerRequest request, @PathVariable("name") String name) {
         Optional<Producer> producer = producerService.find(name);
+
         if (producer.isPresent()) {
             UpdateProducerRequest.dtoToEntityUpdater().apply(producer.get(), request);
             producerService.update(producer.get());

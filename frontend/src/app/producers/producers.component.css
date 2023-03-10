@@ -1,0 +1,9 @@
+:host > mat-list {
+  margin-bottom: 20px;
+}
+
+.list-record {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

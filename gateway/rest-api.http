@@ -3,7 +3,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/cars/1
+GET http://localhost:8080/api/cars/9
 Accept: application/json
 
 ###
@@ -19,6 +19,17 @@ Content-Type: application/json
 {
   "name": "Hilux",
   "horsePower": 150
+}
+
+###
+
+POST http://localhost:8080/api/cars/
+Content-Type: application/json
+
+{
+  "name": "Accord",
+  "producer": "Honda",
+  "horsePower": 178
 }
 
 ###
@@ -61,9 +72,9 @@ PUT http://localhost:8080/api/producers/Mitsubishi
 Content-Type: application/json
 
 {
-  "name": "Mitsubishi",
   "foundationYear": 2022
 }
+
 ###
 
 POST http://localhost:8080/api/producers
